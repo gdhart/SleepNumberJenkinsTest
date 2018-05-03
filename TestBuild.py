@@ -1,15 +1,15 @@
 import jenkins
 import sys
 
-username = 'charles.whaples'
-password = 'placeholder'
+username = 'hartgx'
+password = 'Sillycat12!'
 
 test_name = sys.argv[1]
 test_suite = sys.argv[2]
 
 job_name = "SlaveTestBuild"
 
-jenkins_url = "http://10.8.32.144"
+jenkins_url = "https://10.8.32.144:8080"
 
 build_token = "thynicemouseswing"
 
