@@ -4,15 +4,14 @@ import sys
 username = 'charles.whaples'
 password = 'placeholder'
 
-parameter_name = "testcase_name"
-parameter_value = "test_name"
+test_name = sys.argv[1]
+test_suite = sys.argv[2]
 
-job_name = "job_name"
+job_name = "SlaveTestBuild"
 
-jenkins_url = "http://jenkins.orasi.com"
+jenkins_url = "http://10.8.32.144"
 
-build_token = "custom_token"
+build_token = "thynicemouseswing"
 
 j = jenkins.Jenkins(jenkins_url,username,password)
-j.build_job(job_name,{parameter_name:parameter_value},token=build_token)
-
+j.build_job(job_name,{"TEST_SUITE":test_suite,"TEST_NAME":test_name},token=build_token)

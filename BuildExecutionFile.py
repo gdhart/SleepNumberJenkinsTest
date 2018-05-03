@@ -2,12 +2,13 @@ import sys
 
 # Use the sys package to grab command line arguments for the web test name and result location
 web_test_name = str(sys.argv[1])
-result_location = str(sys.argv[2])
+test_suite = str(sys.argv[2])
+
 # TODO: Might need 3rd parameter for the environment if we can't pull from
 # TODO: the plugin that Gordon was using for that for the gVar in QTP
 
 # Open our file in write mode and begin writing the QTP execution script
-file = open("QTP_Run_Script.txt",'w')
+file = open("QTP_Run_Script.vbs",'w')
 
 file.write("'Create QTP object\n")
 file.write("Set QTP = CreateObject(\"QuickTest.Application\")\n")
@@ -22,7 +23,7 @@ file.write('\n')
 file.write("'Set Result location\n")
 file.write("Set qtpResultsOpt = CreateObject(\"QuickTest.RunResultsOptions\")\n")
 
-file.write('qtpResultsOpt.ResultsLocation = "'+result_location+'" \'Set the results location\n')
+file.write('qtpResultsOpt.ResultsLocation = "'+web_test_name+'\Report" \'Set the results location\n')
 
 file.write("'Set the Test Parameters\n")
 file.write("Set pDefColl = QTP.Test.ParameterDefinitions\n")
@@ -31,7 +32,7 @@ file.write('\n')
 
 file.write("'Set the value for test environment through command line\n")
 file.write("On Error Resume Next\n")
-file.write("qtpParams.Item(\"TestSuite\").Value = LCase(WScript.Arguments.Item(0))\n")
+file.write("qtpParams.Item(\"TestSuite\").Value = LCase("+test_suite+")\n")
 file.write("On Error GoTo 0\n")
 file.write('\n')
 
